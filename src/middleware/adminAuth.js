@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 const adminAuth = (req, res, next) => {
   try {
@@ -35,5 +35,4 @@ const adminAuth = (req, res, next) => {
     });
   }
 };
-
-module.exports = adminAuth;
+export default adminAuth;

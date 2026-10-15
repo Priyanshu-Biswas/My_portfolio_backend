@@ -1,5 +1,8 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcryptjs");
+// const jwt = require("jsonwebtoken");
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
 
 const login = async (req, res, next) => {
   try {
@@ -64,4 +67,4 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { login };
+export default login ;

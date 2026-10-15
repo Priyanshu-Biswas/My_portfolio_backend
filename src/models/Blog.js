@@ -1,6 +1,6 @@
 
-const mongoose = require("mongoose");
-
+// const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const blogSchema = new mongoose.Schema(
     {
         title: {
@@ -69,4 +69,5 @@ const blogSchema = new mongoose.Schema(
 // Useful for fetching published blogs in date order
 blogSchema.index({ status: 1, publishedAt: -1 });
 
-module.exports = mongoose.model("Blog", blogSchema);
+const blogmodel= mongoose.model("Blog", blogSchema);
+export {blogmodel};

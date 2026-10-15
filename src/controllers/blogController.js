@@ -1,5 +1,7 @@
 
-const blogService = require("../services/blogService");
+// const blogService = require("../services/blogService");
+
+import * as blogService from "../services/blogService.js";
 
 // Handles asynchronous errors
 const asyncHandler = (fn) => (req, res, next) =>
@@ -117,7 +119,7 @@ const likeBlog = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = {
+export {
     getPublishedBlogs,
     getPublishedBlogBySlug,
     getAllBlogs,

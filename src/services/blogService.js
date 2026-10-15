@@ -1,6 +1,9 @@
 
-const mongoose = require("mongoose");
-const Blog = require("../models/Blog");
+// const mongoose = require("mongoose");
+// const Blog = require("../models/Blog");
+
+import mongoose from "mongoose";
+import {blogmodel as Blog} from "../models/Blog.js";
 
 const createSlug = (title) => {
     return title
@@ -200,7 +203,7 @@ const likeBlog = async (id) => {
     ).lean();
 };
 
-module.exports = {
+export {
     getPublishedBlogs,
     getPublishedBlogBySlug,
     getAllBlogs,

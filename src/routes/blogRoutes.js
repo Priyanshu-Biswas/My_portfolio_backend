@@ -1,25 +1,53 @@
-const express = require("express");
+
+import express from "express";
+
+import * as blogController from "../controllers/blogController.js";
+import adminAuth from "../middleware/adminAuth.js";
+
 const router = express.Router();
 
-const blogController = require("../controllers/blogController");
-const adminAuth = require("../middleware/adminAuth");
+// ========================================
+// PUBLIC ROUTES
+// ========================================
 
-// Public routes
-router.get("/", blogController.getPublishedBlogs);
+// Get all published blogs
+router.get("/", (req, res, next) => {
+    blogController.getPublishedBlogs(req, res, next);
+});
 
-router.patch("/:id/like", blogController.likeBlog);
+// Like a blog
+router.patch("/:id/like", (req, res, next) => {
+    blogController.likeBlog(req, res, next);
+});
 
-// Admin-only routes
-// Keep this before router.get("/:slug")
-router.get("/admin/all", adminAuth, blogController.getAllBlogs);
+// Get a published blog by slug
+// Keep this after /admin/all
+router.get("/:slug", (req, res, next) => {
+    blogController.getPublishedBlogBySlug(req, res, next);
+});
 
-router.post("/", adminAuth, blogController.createBlog);
+// ========================================
+// ADMIN-ONLY ROUTES
+// ========================================
 
-router.patch("/:id", adminAuth, blogController.updateBlog);
+// Get all blogs, including unpublished blogs
+router.get("/admin/all", adminAuth, (req, res, next) => {
+    blogController.getAllBlogs(req, res, next);
+});
 
-router.delete("/:id", adminAuth, blogController.deleteBlog);
+// Create a blog
+router.post("/", adminAuth, (req, res, next) => {
+    blogController.createBlog(req, res, next);
+});
 
-// Public route: Get a published blog by slug
-router.get("/:slug", blogController.getPublishedBlogBySlug);
+// Update a blog
+router.patch("/:id", adminAuth, (req, res, next) => {
+    blogController.updateBlog(req, res, next);
+});
 
-module.exports = router;
+// Delete a blog
+router.delete("/:id", adminAuth, (req, res, next) => {
+    blogController.deleteBlog(req, res, next);
+});
+
+export default router;

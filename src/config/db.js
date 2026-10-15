@@ -1,8 +1,10 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import 'dotenv/config';
 
 const connectDB = async () => {
     try {
         const uri = process.env.MONGODB_URI;
+        console.log(uri);
 
         if (!uri) {
             throw new Error("MONGODB_URI is missing from the .env file");
@@ -17,4 +19,4 @@ const connectDB = async () => {
     }
 };
 
-module.exports = connectDB;
+export default connectDB;
